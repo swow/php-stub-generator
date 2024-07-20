@@ -205,7 +205,7 @@ foreach ($cSourceFiles as $cSourceFile) {
         }
         $newArgInfoBody = $matches[0];
         // -Wunicode: \U used with no following hex digits; treating as '\' followed by identifier
-        $newArgInfoBody = preg_replace('/\\\\\\\\([uUxX])/', '\x5c$1', $newArgInfoBody);
+        $newArgInfoBody = preg_replace('/\\\\\\\([uUxX])/', '\x5c$1', $newArgInfoBody);
         if ($oldArgInfoBody === $newArgInfoBody) {
             continue;
         }

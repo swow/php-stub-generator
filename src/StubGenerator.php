@@ -234,7 +234,7 @@ class StubGenerator
             if (ctype_print($slashedString)) {
                 return $slashedString;
             }
-            return '\\x' . substr(chunk_split(bin2hex($string), 2, '\\x'), 0, -2);
+            return '\x' . substr(chunk_split(bin2hex($string), 2, '\x'), 0, -2);
         }
         return $string;
     }
@@ -242,8 +242,8 @@ class StubGenerator
     protected static function quoteString(string $string): string
     {
         $string = static::escapeString($string);
-        if (!preg_match('/(?<!\\\\)(?:\\\\{2})*\\\\(?!["$\\\\])/', $string)) {
-            return sprintf("'%s'", str_replace(['\\"', '\\$', '\''], ['"', '$', '\\\''], $string));
+        if (!preg_match('/(?<!\\\)(?:\\\{2})*\\\(?!["$\\\])/', $string)) {
+            return sprintf("'%s'", str_replace(['\"', '\$', '\''], ['"', '$', '\\\''], $string));
         } else {
             return sprintf('"%s"', $string);
         }
